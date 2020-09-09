@@ -1,0 +1,2 @@
+rootProject.name='SmartEnt'
+include ':app', ':bluetoothjhr', ':temperaturaJhr'

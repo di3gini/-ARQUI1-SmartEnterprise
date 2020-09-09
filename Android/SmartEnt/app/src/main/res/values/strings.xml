@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">SmartEnt</string>
+    <string name="title_activity_control">Control</string>
+    <string name="title_home">Luces</string>
+    <string name="title_dashboard">Porton</string>
+    <string name="title_notifications">Bandas</string>
+    <string name="onText">ON</string>
+    <string name="offText">OFF</string>
+    <string name="title_L1">Laboratorio 1</string>
+    <string name="title_L2">Laboratorio 2</string>
+    <string name="title_SalidaCam">Salida de Camiones</string>
+    <string name="title_Entrada">Entrada de Empleados</string>
+    <string name="title_Luces">Control de Luces</string>
+    <string name="title_LucesGen">Control General</string>
+    <string name="title_ConBanda">Control de Bandas</string>
+    <string name="title_Banda">Encender banda</string>
+    <string name="title_AbrirP">Abrir Porton</string>
+    <string name="title_CerrarP">Cerrar Porton</string>
+    <string name="title_Porton">Control del portón</string>
+    <string name="title_Temperatura">Temperatura</string>
+</resources>

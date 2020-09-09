@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:text="@string/title_LucesGen"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/title_SalidaCam"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnL1On" />
+
+    <Button
+        android:id="@+id/btnL1Off"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rounded_corners_off"
+        android:text="@string/offText"
+        android:textColor="#FFF"
+        app:layout_constraintStart_toEndOf="@+id/btnL1On"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnL2Off2"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rounded_corners_off"
+        android:text="@string/offText"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toEndOf="@+id/btnL2On"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/btnL1On"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="36dp"
+        android:background="@drawable/rounded_corners_on"
+        android:text="@string/onText"
+        android:textColor="#FFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnL1Off" />
+
+    <Button
+        android:id="@+id/btnSCOn"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_corners_on"
+        android:text="@string/onText"
+        android:textColor="#FFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/btnGenOn"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corners_on"
+        android:text="@string/onText"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toStartOf="@+id/btnGenOff"
+        app:layout_constraintHorizontal_bias="0.836"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <Button
+        android:id="@+id/btnGenOff"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="152dp"
+        android:background="@drawable/rounded_corners_off"
+        android:text="@string/offText"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:text="@string/title_L1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnL1Off"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="@+id/btnL1On"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnEEOff"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/rounded_corners_off"
+        android:text="@string/offText"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/btnL2Off"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rounded_corners_off"
+        android:text="@string/offText"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toEndOf="@+id/btnL2On"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/btnL2On"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="72dp"
+        android:background="@drawable/rounded_corners_on"
+        android:text="@string/onText"
+        android:textColor="#FFF"
+        app:layout_constraintStart_toEndOf="@+id/btnL1Off"
+        app:layout_constraintTop_toTopOf="@+id/btnL2Off" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="108dp"
+        android:text="@string/title_L2"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="@+id/btnL2On"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSCOff"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_corners_off"
+        android:text="@string/offText"
+        android:textColor="#FFF"
+        app:layout_constraintStart_toEndOf="@+id/btnSCOn"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_Luces"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.842" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="228dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/title_Entrada"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnEEOn"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_corners_on"
+        android:text="@string/onText"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toStartOf="@+id/btnEEOff"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
