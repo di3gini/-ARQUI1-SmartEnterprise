@@ -3,6 +3,7 @@ package arqui1.grupo2b.smartent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -15,6 +16,7 @@ import arqui1.grupo2b.smartent.Control
 import arqui1.grupo2b.smartent.ui.temp.temp
 import kotlinx.android.synthetic.main.temp_fragment.*
 import kotlinx.coroutines.invoke
+import kotlinx.coroutines.newFixedThreadPoolContext
 
 class Control : AppCompatActivity() {
 
@@ -58,11 +60,17 @@ class Control : AppCompatActivity() {
                 mensaje = blue.mRx()
                 if (mensaje != "") {
                     if (hilo) {
-                        runOnUiThread{
+                        runOnUiThread {
                             //termometro.tempSet(mensaje.toFloat())
-                            println("Temperatura: $mensaje °C")
+                            println("$mensaje")
 
+                            if(mensaje.matches("Y+".toRegex())){
+                                println("Cortar conexión")
+                                Toast.makeText(this, "No tiene permiso para conectarse por la APP", Toast.LENGTH_SHORT).show()
+                                blue.exitConexion()
 
+                                finish()
+                            }
                         }
 
                     } else {

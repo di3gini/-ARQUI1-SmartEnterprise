@@ -58,6 +58,7 @@ class temp : Fragment() {
                     }
                     (activity as Control).runOnUiThread {
                         txttemp.setText("$mensaje °C")
+
                     }
 
 //                    Toast.makeText(context, "Prueba temperatura", Toast.LENGTH_SHORT).show()
