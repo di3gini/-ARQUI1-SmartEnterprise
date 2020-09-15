@@ -99,6 +99,7 @@ String EID = "";
 String EPSW = "";
 String EGRT = "";
 
+int entEmpleados;
 
 void setup() {
   // put your setup code here, to run once:
@@ -124,7 +125,8 @@ void setup() {
   pinMode(15, OUTPUT);
   pinMode(16, OUTPUT);
   pinMode(17, OUTPUT);
-
+  pinMode(13, INPUT);
+  entEmpleados = 0;
   //SENSOR TEMPERATURA
   pinMode(A0, INPUT);
 
@@ -188,7 +190,13 @@ int period = 1000;
 unsigned long time_now = 0;
 
 void loop() {
-
+  entEmpleados = digitalRead(13);
+  if(entEmpleados == 1){
+    digitalWrite(17, HIGH);
+  }
+  else{
+    //digitalWrite(17,LOW);
+  }
      if (cerrado == false && millis() - t3 >= 6000) {
             cerrarPorton();
             cerrado = true;
