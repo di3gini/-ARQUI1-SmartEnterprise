@@ -2,6 +2,7 @@
 #include "LiquidCrystal_I2C.h"
 //INCLUIDO MOTORES --------------------------------------------------
 #include <Servo.h>
+#include <Stepper.h>
 
 #include <Keypad.h>
 #include <EEPROM.h>
@@ -40,10 +41,12 @@ int slab2 = 0;
 int pospa = 0;
 int clkst2 = 0;
 int cerrarPuerta = 0;
-int t = 0;
-int t2 = 0;
-int t3 = 0;
+unsigned long t = 0;
+unsigned long t2 = 0;
+unsigned long t3 = 0;
+unsigned long t8 = 0;
 boolean acces = false;
+boolean cerrado = true;
 
 //EL SIGUIENTE SEGMENTO SE PUEDE ELIMINAR:--------------------------&&&&
 #define INMENU 47
@@ -149,7 +152,9 @@ void setup() {
   srv.write(0);
   t = millis();
   t2 = millis();
+  t8 = millis();
 
+  cerrado = true;
   Serial.begin(9600);
 
   pinMode(ledPASE, OUTPUT);
@@ -173,8 +178,9 @@ void setup() {
   int seed;
   EEPROM.get(0, seed);
   randomSeed(seed + 32);
- 
+
 }
+
 
 boolean login_state;
 
@@ -183,16 +189,21 @@ unsigned long time_now = 0;
 
 void loop() {
 
+     if (cerrado == false && millis() - t3 >= 6000) {
+            cerrarPorton();
+            cerrado = true;
+     }
+  
   login_state = LOGIN();
   if (!login_state) {
     //Y se envia cuando no hay acceso a la app
-    
-    if(millis() > time_now + period){
-        time_now = millis();
-        Serial.print("Y");
+
+    if (millis() > time_now + period) {
+      time_now = millis();
+      Serial.print("Y");
     }
-      return;
-  } else {     
+    return;
+  } else {
     Serial.print("");
     if (Serial.available() > 0) {
       state = Serial.read();
@@ -255,12 +266,15 @@ void loop() {
           break;
         case 'M':
           cerrarPuerta = 0;
-          fun_servo();
+          abrirPorton();
+          t3 = millis();
+          cerrado = false;
           state = 0;
           break;
         case 'N':
           cerrarPuerta = 1;
-          fun_servo();
+          cerrarPorton();
+          cerrado = true;
           state = 0;
           break;
         case 'T':
@@ -418,60 +432,57 @@ void funStepDer() {
 }
 
 //FUNCION DEL PORTON
-void fun_servo() {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.write(byte(5));
-  lcd.setCursor(1, 0);
-  lcd.print("&ControlPorton&");
-  lcd.setCursor(2, 1);
-  lcd.write(byte(3));
-  lcd.setCursor(3, 1);
-  lcd.write(byte(4));
-  lcd.setCursor(4, 1);
-  lcd.print("Abriendo");
-  lcd.setCursor(12, 1);
-  lcd.write(byte(4));
-  for (int i = 0; i <= 180; i++) {
-    srv.write(i);
-    delay(15);
-  }
-  t3 = millis();
-  digitalWrite(34, HIGH);
-  bool salir = false;
-  while (!salir) {
-
-    //AQUI, REVISA CONSTANTEMENTE SI LA VARIABLE cerrarPuerta=1 se deberia cambiar a Bluetooth.
-
-
-    //Se tiene que modificar este if , la parte de cerrar puerta, la parte de millis va igual
-    if (millis() - t3 >= 6000 || cerrarPuerta == 1) {
-      salir = true;
-      digitalWrite(34, LOW);
+void abrirPorton() {
+  if(cerrado){
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.write(byte(5));
+    lcd.setCursor(1, 0);
+    lcd.print("&ControlPorton&");
+    lcd.setCursor(2, 1);
+    lcd.write(byte(3));
+    lcd.setCursor(3, 1);
+    lcd.write(byte(4));
+    lcd.setCursor(4, 1);
+    lcd.print("Abriendo");
+    lcd.setCursor(12, 1);
+    lcd.write(byte(4));
+    for (int i = 0; i <= 180; i++) {
+      srv.write(i);
+      delay(15);
     }
+    digitalWrite(34, HIGH);
   }
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.write(byte(5));
-  lcd.setCursor(1, 0);
-  lcd.print("&ControlPorton&");
-  lcd.setCursor(2, 1);
-  lcd.write(byte(2));
-  lcd.setCursor(3, 1);
-  lcd.write(byte(4));
-  lcd.setCursor(4, 1);
-  lcd.print("Cerrando");
-  lcd.setCursor(12, 1);
-  lcd.write(byte(4));
-  for (int i = 180; i >= 0; i--) {
-    srv.write(i);
-    delay(15);
-  }
-  digitalWrite(35, HIGH);
-  tone(10, 550, 3000);
-  delay(3000);
-  digitalWrite(35, LOW);
 }
+
+void cerrarPorton() {
+  if(!cerrado) {
+    digitalWrite(34, LOW);
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.write(byte(5));
+    lcd.setCursor(1, 0);
+    lcd.print("&ControlPorton&");
+    lcd.setCursor(2, 1);
+    lcd.write(byte(2));
+    lcd.setCursor(3, 1);
+    lcd.write(byte(4));
+    lcd.setCursor(4, 1);
+    lcd.print("Cerrando");
+    lcd.setCursor(12, 1);
+    lcd.write(byte(4));
+    for (int i = 180; i >= 0; i--) {
+      srv.write(i);
+      delay(15);
+    }
+    digitalWrite(35, HIGH);
+    tone(10, 550, 3000);
+    delay(3000);
+    digitalWrite(35, LOW);
+  }
+}
+
+
 
 boolean LOGIN() {
 
@@ -603,16 +614,16 @@ boolean LOGIN() {
     }
   }
 
-  
+
   //ESTADO DE REGISTRO DE EMPLEADO
   if (estadoRegistro) {
     Registro();
   }
   //ESTADO CREDENCIALES CORRECTAS
 
-  
+
   if (estadoCorrecto) {
-    acces=true;
+    acces = true;
     lcd.setCursor(5, 0);
     lcd.print("ACCESO");
     lcd.setCursor(4, 1);
@@ -622,7 +633,7 @@ boolean LOGIN() {
     for (int i = 0; i <= 5; i++) {
       SPKBIENVENIDO();
     }
-    
+
   }
 
 

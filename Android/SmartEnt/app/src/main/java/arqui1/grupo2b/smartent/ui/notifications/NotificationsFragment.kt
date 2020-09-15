@@ -31,11 +31,11 @@ class NotificationsFragment : Fragment() {
         val btnPOn: Button = root.findViewById(R.id.btnPOn)
         val btnPOff: Button = root.findViewById(R.id.btnPOff)
 
-        btnPOn.setOnClickListener{
+        btnPOff.setOnClickListener{
             (activity as Control).blue.mTx("M")
             Toast.makeText(context, "Abriendo portón", Toast.LENGTH_SHORT).show()
         }
-        btnPOff.setOnClickListener{
+        btnPOn.setOnClickListener{
             (activity as Control).blue.mTx("N")
             Toast.makeText(context, "Cerrando portón", Toast.LENGTH_SHORT).show()
         }
